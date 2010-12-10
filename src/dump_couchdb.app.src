@@ -1,12 +1,13 @@
-{application, dump_couchdb,
- [
-  {description, ""},
-  {vsn, "1"},
-  {registered, []},
-  {applications, [
-                  kernel,
-                  stdlib
-                 ]},
-  {mod, { dump_couchdb_app, []}},
-  {env, []}
- ]}.
+{ application, dump_couchdb
+, [ {description, "Fetch raw CouchDB data files"}
+  , {vsn, "0.1.0"}
+  , {registered, []}
+  , {applications, [ kernel
+                   , stdlib
+                   , dump_couchdb
+                   ]
+    }
+  , {mod, dump_couchdb_app, []}
+  , {env, []}
+  ]
+}.
