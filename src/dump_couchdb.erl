@@ -7,8 +7,9 @@
 
 -include("couch_db.hrl").
 
-handle_dump_req(#httpd{method='GET'}=Req, Db)
+handle_dump_req(#httpd{method='GET'}=Req, Db=#db{fd=Fd, fd_ref_counter=RefCounter, name=Name, filepath=Path})
     -> ?LOG_DEBUG("Received dump request: ~p", [Req])
+    , ?LOG_DEBUG("Database:\n~p", [[{fd,Fd}, {ref, RefCounter}, {name, Name}, {path, Path}]])
     , ok = couch_httpd:verify_is_server_admin(Req)
     , couch_httpd:send_json(Req, 200, {[{ok, true}, {<<"not implemented">>, <<"also true">>}]})
     ;
